@@ -1,8 +1,20 @@
 import time
 import requests
 import pprint 
-spotify_access_token = 'BQBnMJNL_uZcz17VJa5zaIi43U94J_ZTaaZSjGzBiZuWKtUgI9YPAphlwmS7OMJyduYneVQzC36X_IvL3U1biixlG1X1El4QEF_8w0AIEV_vJ2C2J9soKIzMhDa0SnSNWnUX7FjtKIuvhP2zBgqJEQNnSN04FUnJ1m5nsK02BoDdMeRWLJ1xTsw'
+spotify_access_token = 'BQCb54AuyZ_EcSQPIfSVgZMJKsG2w2yd-iKYHXh6o5Qn3u1by0iVrknVYGIgrB-Y6BVm7sj2Jr70vLNa4aH-roCqHdbdUGR4db-c-1fK74Bt1yzqASUrAU_AJNuZkm_ZOJ584uFITtRSOP1Flbg4xuthRqrGtf2T-LsFKTd2o_2QbufRfwF2QVA'
 spotify_get_current_track_url = 'https://api.spotify.com/v1/me/player/currently-playing'
+
+class song_info:
+    def __init__(current_song, name, artist, id, link):
+        current_song.name = name
+        current_song.artist = artist
+        current_song.id = id
+        current_song.link = link
+
+class reduced_song_info:
+    def __init__(current_song, name, artist):
+        current_song.name = name
+        current_song.artist = artist
 
 # gets the current track using the spotify authorization token
 def get_current_track (access_token):
@@ -33,12 +45,21 @@ def get_current_track (access_token):
 
     return current_track_info
 
-class song_info:
-    def __init__(current_song, name, artist, id, link):
-        current_song.name = name
-        current_song.artist = artist
-        current_song.id = id
-        current_song.link = link
+def print_full_data (song_info):
+    with open("/Users/petemango/SIDE PROJECTS/spotify_tracker/currently_playing/full_data.txt", "at") as file:
+        file.write(song_info.name + "\n")
+        file.write(song_info.artist + "\n")
+        file.write(song_info.id + "\n")
+        file.write(song_info.link + "\n")
+        file.write("\n")
+    file.close()
+
+def print_limited_data (reduced_song_info):
+    with open("/Users/petemango/SIDE PROJECTS/spotify_tracker/currently_playing/reduced_song_info.txt", "at") as file:
+        file.write(reduced_song_info.name + "\n")
+        file.write(reduced_song_info.artist + "\n")
+        file.write("\n")
+    file.close()
 
 def main():
     current_track_id = None
@@ -46,14 +67,21 @@ def main():
         current_track_info = get_current_track(spotify_access_token)
         
         if current_track_info['id'] != current_track_id:
-            # current_song = song_info(current_track_info)
+            # current_song = song_info(current_track_info.get("name"), current_track_info.get("artists"), 
+            # current_track_info.get("id"), current_track_info.get("link"))
 
-            output_string = pprint.pformat(current_track_info, indent=4)
-            print_string = output_string + "\n"
-            # print(output_string)
-            with open("/Users/petemango/SIDE PROJECTS/spotify_tracker/recently_played_tracks.txt", "at") as file:
-                file.write(print_string)
-                file.close()
+            red_song_info = reduced_song_info(current_track_info.get("name"), current_track_info.get("artists"))
+            ful_song_info = song_info(current_track_info.get("name"), current_track_info.get("artists"), current_track_info.get("id"), current_track_info.get("link"))
+
+            print_full_data(ful_song_info)
+            print_limited_data(red_song_info)
+
+            # output_string = pprint.pformat(current_track_info, indent=4)
+            # print_string = output_string + "\n"
+            # # print(output_string)
+            # with open("/Users/petemango/SIDE PROJECTS/spotify_tracker/currently_playing/recently_played_tracks.txt", "at") as file:
+            #     file.write(print_string)
+            #     file.close()
             # pprint(current_track_info, indent=4)
             current_track_id = current_track_info['id']
     time.sleep(1)

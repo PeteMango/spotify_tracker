@@ -120,3 +120,31 @@
     'id': '1ARJhjuI6TNYZCxYygFQ4F',
     'link': 'https://open.spotify.com/track/1ARJhjuI6TNYZCxYygFQ4F',
     'name': 'Right Now (Na Na Na)'}
+{   'artists': 'Fly By Nightcore',
+    'id': '64lTLauuuFyx0L0cOD0y4I',
+    'link': 'https://open.spotify.com/track/64lTLauuuFyx0L0cOD0y4I',
+    'name': 'Iris'}
+{   'artists': 'Taylor Swift',
+    'id': '59HjlYCeBsxdI0fcm3zglw',
+    'link': 'https://open.spotify.com/track/59HjlYCeBsxdI0fcm3zglw',
+    'name': 'Wildest Dreams'}
+{   'artists': '蕭蕭',
+    'id': '20eb2fjizthXEVFTVzl5OR',
+    'link': 'https://open.spotify.com/track/20eb2fjizthXEVFTVzl5OR',
+    'name': '握不住的他'}
+{   'artists': 'Morgan Page, VIVID',
+    'id': '05Ke9LELmOiA5i3L0ybFUy',
+    'link': 'https://open.spotify.com/track/05Ke9LELmOiA5i3L0ybFUy',
+    'name': 'Fade Away'}
+{   'artists': 'Culture Code, RØRY',
+    'id': '6tWYy1rpi6MpQyeVuVngEW',
+    'link': 'https://open.spotify.com/track/6tWYy1rpi6MpQyeVuVngEW',
+    'name': 'More Than Words'}
+{   'artists': 'Mike Parr, Leeah, COE',
+    'id': '7MLZc2C7guizPRLIq6DspS',
+    'link': 'https://open.spotify.com/track/7MLZc2C7guizPRLIq6DspS',
+    'name': 'Turn It Up (COE Remix)'}
+{   'artists': 'William Black, Fairlane, Dia Frampton',
+    'id': '0Rz2MaUfMUkWZR6jbhtRkP',
+    'link': 'https://open.spotify.com/track/0Rz2MaUfMUkWZR6jbhtRkP',
+    'name': 'Butterflies'}
