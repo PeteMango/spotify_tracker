@@ -4,6 +4,7 @@ import pprint
 spotify_access_token = 'BQCb54AuyZ_EcSQPIfSVgZMJKsG2w2yd-iKYHXh6o5Qn3u1by0iVrknVYGIgrB-Y6BVm7sj2Jr70vLNa4aH-roCqHdbdUGR4db-c-1fK74Bt1yzqASUrAU_AJNuZkm_ZOJ584uFITtRSOP1Flbg4xuthRqrGtf2T-LsFKTd2o_2QbufRfwF2QVA'
 spotify_get_current_track_url = 'https://api.spotify.com/v1/me/player/currently-playing'
 
+# class for complete song info
 class song_info:
     def __init__(current_song, name, artist, id, link):
         current_song.name = name
@@ -11,6 +12,7 @@ class song_info:
         current_song.id = id
         current_song.link = link
 
+# class for reduced song info
 class reduced_song_info:
     def __init__(current_song, name, artist):
         current_song.name = name
@@ -45,6 +47,7 @@ def get_current_track (access_token):
 
     return current_track_info
 
+# print the full song data
 def print_full_data (song_info):
     with open("/Users/petemango/SIDE PROJECTS/spotify_tracker/currently_playing/full_data.txt", "at") as file:
         file.write(song_info.name + "\n")
@@ -54,6 +57,7 @@ def print_full_data (song_info):
         file.write("\n")
     file.close()
 
+# print the simplified song data
 def print_limited_data (reduced_song_info):
     with open("/Users/petemango/SIDE PROJECTS/spotify_tracker/currently_playing/reduced_song_info.txt", "at") as file:
         file.write(reduced_song_info.name + "\n")
@@ -61,6 +65,7 @@ def print_limited_data (reduced_song_info):
         file.write("\n")
     file.close()
 
+# main function to process the data pulled from the API
 def main():
     current_track_id = None
     while True:
