@@ -49,7 +49,7 @@ def get_current_track (access_token):
 
 # print the full song data
 def print_full_data (song_info):
-    with open("/Users/petemango/SIDE PROJECTS/spotify_tracker/currently_playing/full_data.txt", "at") as file:
+    with open("/Users/petemango/SIDE PROJECTS/spotify_tracker/currently_playing/full_song_info.txt", "at") as file:
         file.write(song_info.name + "\n")
         file.write(song_info.artist + "\n")
         file.write(song_info.id + "\n")
@@ -75,19 +75,8 @@ def main():
             # current_song = song_info(current_track_info.get("name"), current_track_info.get("artists"), 
             # current_track_info.get("id"), current_track_info.get("link"))
 
-            red_song_info = reduced_song_info(current_track_info.get("name"), current_track_info.get("artists"))
-            ful_song_info = song_info(current_track_info.get("name"), current_track_info.get("artists"), current_track_info.get("id"), current_track_info.get("link"))
-
-            print_full_data(ful_song_info)
-            print_limited_data(red_song_info)
-
-            # output_string = pprint.pformat(current_track_info, indent=4)
-            # print_string = output_string + "\n"
-            # # print(output_string)
-            # with open("/Users/petemango/SIDE PROJECTS/spotify_tracker/currently_playing/recently_played_tracks.txt", "at") as file:
-            #     file.write(print_string)
-            #     file.close()
-            # pprint(current_track_info, indent=4)
+            red_song_info = reduced_song_info(current_track_info['id'], current_track_info['artists'])
+            ful_song_info = song_info(current_track_info['name'], current_track_info['artists'], current_track_info['id'], current_track_info['link'])
             current_track_id = current_track_info['id']
     time.sleep(1)
 
