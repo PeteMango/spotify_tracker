@@ -1,7 +1,7 @@
 import time
 import requests
 import pprint 
-spotify_access_token = 'BQD_ILTAI6FkXw2kBEfFsLsZHFC67-56pP_l_zOtLzXVnNSzAuY4lKrBZAyseMVtJ03LdHamgvaN8R4FGSfNYNN4CQTSvZyqgpg6t9Khx5OrC1TG1z8ISXDxdcuiz9Xt4oXFmBKVsq7N7908ZDRFYPGVvqr4Wyr7fvC6ZyLrYYsO4joLWFQgX0o'
+spotify_access_token = 'BQAjTp94j0gFnzlziZN4GLHdAup1fsjSdsu0D_d5Hvxtrwens_C-HoZt-BnhZuVNJNagW8BmSjbxQO3F9wIsA4F5ry1ce9X2iFERDMryzHznbjz2069Zp3HoNIcgyF1Rb9LmTf56Zu8JDsvGisCz6cgLFy0CsqNoQM9h0aQhHkl5CBAW90NmCm0'
 spotify_get_current_track_url = 'https://api.spotify.com/v1/me/player/currently-playing'
 
 class song_info:
@@ -24,8 +24,8 @@ def get_current_track (access_token):
             "Authorization": f"Bearer {access_token}"
         }
     )
-    response_json = response.json()
 
+    response_json = response.json()
     # single variable (ex. only one name, one id and one spotify link)
     track_id = response_json['item']['id']
     track_name = response_json['item']['name']
@@ -84,7 +84,7 @@ def main():
             #     file.close()
             # pprint(current_track_info, indent=4)
             current_track_id = current_track_info['id']
-    time.sleep(1)
+    time.sleep(30)
 
 if __name__ == '__main__':
     main()
