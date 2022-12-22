@@ -1,7 +1,7 @@
 import time
 import requests
 import pprint 
-spotify_access_token = 'BQAjTp94j0gFnzlziZN4GLHdAup1fsjSdsu0D_d5Hvxtrwens_C-HoZt-BnhZuVNJNagW8BmSjbxQO3F9wIsA4F5ry1ce9X2iFERDMryzHznbjz2069Zp3HoNIcgyF1Rb9LmTf56Zu8JDsvGisCz6cgLFy0CsqNoQM9h0aQhHkl5CBAW90NmCm0'
+spotify_access_token = 'BQB5hzy3HOwapn0MHTHTXcvM4Ahjz5W-K_GSwLOTutQGghfAwot-Pz0BJCIxY42n8yiWbk7qf9EaaIQwvdAcCOoHH-uBPdUDBEwiNfL-BqP5a-sufqs0XwMAW_FOx4kPUN-RqWAgrKSXBwxWJNrlxET6YIoitBctpbiyNKCioXYY6-bYSgQkr6A'
 spotify_get_current_track_url = 'https://api.spotify.com/v1/me/player/currently-playing'
 
 class song_info:
