@@ -1,4 +1,4 @@
-import time
+import time as t
 import pprint 
 import requests
 from datetime import *
@@ -117,8 +117,11 @@ def main():
             song_seconds = current_song_length['minutes'] * 60 + current_song_length['seconds']
             update_listening_time(get_current_listening_time(), song_seconds)
 
+            time_listened = get_current_listening_time() + song_seconds
+            post_listening_time(time_listened)
+
             current_track_id = current_track_info['id']
-    time.sleep(60)
+        t.sleep(10)
 
 if __name__ == '__main__':
     main()

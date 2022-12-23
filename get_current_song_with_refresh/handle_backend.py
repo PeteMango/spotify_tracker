@@ -1,9 +1,11 @@
 import pymongo
+from datetime import *
 from pymongo import MongoClient
 
 cluster = MongoClient("mongodb+srv://petemango:ay4h7vRoWNv6BD1a@spotify-tracker-cluster.jbudfme.mongodb.net/?retryWrites=true&w=majority")
 db = cluster["spotify_tracker_data"]
 collection = db["songs_listened"]
+listen = db["listening_time"]
 
 def post_to_cloud (song_info):
     name = song_info.name
@@ -24,7 +26,11 @@ def remove_duplicate ():
         collection.delete_many({"name":name})
         collection.insert_one(temp_value)
 
-        print(temp_value)
+        # print(temp_value)
 
-    
-        
+def post_listening_time (total_listening_time):
+    current_date = datetime.now()
+    minutes = int(total_listening_time / 60)
+    seconds = int(total_listening_time % 60)
+    post = {"date-time": current_date, "minutes":minutes, "seconds":seconds}
+    listen.insert_one(post)
