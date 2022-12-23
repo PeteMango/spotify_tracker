@@ -1,11 +1,13 @@
 import time
 import pprint 
 import requests
+from datetime import *
 from new_token import *
 from song_length import *
 
 current_track_url = 'https://api.spotify.com/v1/me/player/currently-playing'
 access_token = new_access_token
+change_day = False
 
 class song_info:
     def __init__(current_song, name, artist, id, link):
@@ -72,10 +74,33 @@ def update_listening_time (current_time, song_length):
     f.write(str(updated_time))
     f.close()
 
+def weekly_tracking (time_listened):
+    f = open("/Users/petemango/SIDE PROJECTS/spotify_tracker/tracked_data/weekly_result.txt", "a")
+    f.writelines(time_listened)
+    f.write("\n")
+
+def reset_counter ():
+    f = open("/Users/petemango/SIDE PROJECTS/spotify_tracker/tracked_data/listen_time.txt", "r")
+    total_listening_time = int(f.readline())
+    weekly_tracking(total_listening_time)
+    f.close()
+
+    f = open("/Users/petemango/SIDE PROJECTS/spotify_tracker/tracked_data/listen_time.txt", "w")
+
 def main():
     current_track_id = None
     while True:
+        current_date = datetime.now()
+        day_of_week = current_date.weekday()
+        # print(current_date)
+        # print(day_of_week)
         current_track_info = get_current_song(access_token)
+
+        if day_of_week == 1:
+            change_day = True
+
+        if day_of_week == 0 and change_day == False: 
+            reset_counter()
         
         if current_track_info['id'] != current_track_id:
             red_song_info = reduced_song_info(current_track_info.get("name"), current_track_info.get("artists"))
