@@ -19,7 +19,7 @@ class reduced_song_info:
         current_song.artist = artist
 
 def print_full_data (song_info):
-    with open("/Users/petemango/SIDE PROJECTS/spotify_tracker/get_current_song_with_refresh/full_song_info.txt", "at") as file:
+    with open("/Users/petemango/SIDE PROJECTS/spotify_tracker/tracked_data/full_song_info.txt", "at") as file:
         file.write(song_info.name + "\n")
         file.write(song_info.artist + "\n")
         file.write(song_info.id + "\n")
@@ -28,7 +28,7 @@ def print_full_data (song_info):
     file.close()
 
 def print_limited_data (reduced_song_info):
-    with open("/Users/petemango/SIDE PROJECTS/spotify_tracker/get_current_song_with_refresh/reduced_song_info.txt", "at") as file:
+    with open("/Users/petemango/SIDE PROJECTS/spotify_tracker/tracked_data/reduced_song_info.txt", "at") as file:
         file.write(reduced_song_info.name + "\n")
         file.write(reduced_song_info.artist + "\n")
         file.write("\n")
