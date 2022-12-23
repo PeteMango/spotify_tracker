@@ -61,16 +61,15 @@ def get_current_song (access_token):
 
     return current_track_info
 
-def update_listening_time (current_track_length):
+def get_current_listening_time ():
     f = open("/Users/petemango/SIDE PROJECTS/spotify_tracker/tracked_data/listen_time.txt", "r")
-    time = int(f.readline())
-    new_time = (time + current_track_length['minutes'] * 60 + current_track_length['seconds'])
-    print(time)
-    # updated_time = int((int(time) + int(current_track_length)))
-    f.close()
+    current_time = int(f.readline())
+    return current_time
 
+def update_listening_time (current_time, song_length):
     f = open("/Users/petemango/SIDE PROJECTS/spotify_tracker/tracked_data/listen_time.txt", "w")
-    f.write(str(time), 'w')
+    updated_time = current_time + song_length
+    f.write(str(updated_time))
     f.close()
 
 def main():
@@ -85,8 +84,9 @@ def main():
             print_full_data(ful_song_info)
             print_limited_data(red_song_info)
 
-            # current_song_length = get_song_length(access_token)
-            # update_listening_time(current_song_length)
+            current_song_length = get_song_length(access_token)
+            song_seconds = current_song_length['minutes'] * 60 + current_song_length['seconds']
+            update_listening_time(get_current_listening_time(), song_seconds)
 
             current_track_id = current_track_info['id']
     time.sleep(10)
