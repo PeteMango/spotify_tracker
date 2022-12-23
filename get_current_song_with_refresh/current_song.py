@@ -4,6 +4,7 @@ import requests
 from datetime import *
 from new_token import *
 from song_length import *
+from upload_to_database import *
 
 current_track_url = 'https://api.spotify.com/v1/me/player/currently-playing'
 access_token = new_access_token
@@ -108,6 +109,8 @@ def main():
 
             print_full_data(ful_song_info)
             print_limited_data(red_song_info)
+
+            post_to_cloud(ful_song_info)
 
             current_song_length = get_song_length(access_token)
             song_seconds = current_song_length['minutes'] * 60 + current_song_length['seconds']
