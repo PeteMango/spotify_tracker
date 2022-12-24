@@ -121,7 +121,7 @@ def main():
             post_listening_time(time_listened)
 
             current_track_id = current_track_info['id']
-        t.sleep(10)
+        t.sleep(20)
 
 if __name__ == '__main__':
     main()
