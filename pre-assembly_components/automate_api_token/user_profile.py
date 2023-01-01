@@ -3,7 +3,7 @@ from automated_api import *
 
 response = requests.get(
     spotify_user_url,
-    headers = {
+    headers={
         "Authorization": f"Bearer {token}"
     }
 )

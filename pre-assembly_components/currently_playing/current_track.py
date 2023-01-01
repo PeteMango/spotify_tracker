@@ -1,8 +1,9 @@
 import time
 import requests
-import pprint 
+import pprint
 spotify_access_token = 'BQB5hzy3HOwapn0MHTHTXcvM4Ahjz5W-K_GSwLOTutQGghfAwot-Pz0BJCIxY42n8yiWbk7qf9EaaIQwvdAcCOoHH-uBPdUDBEwiNfL-BqP5a-sufqs0XwMAW_FOx4kPUN-RqWAgrKSXBwxWJNrlxET6YIoitBctpbiyNKCioXYY6-bYSgQkr6A'
 spotify_get_current_track_url = 'https://api.spotify.com/v1/me/player/currently-playing'
+
 
 class song_info:
     def __init__(current_song, name, artist, id, link):
@@ -11,16 +12,19 @@ class song_info:
         current_song.id = id
         current_song.link = link
 
+
 class reduced_song_info:
     def __init__(current_song, name, artist):
         current_song.name = name
         current_song.artist = artist
 
 # gets the current track using the spotify authorization token
-def get_current_track (access_token):
+
+
+def get_current_track(access_token):
     response = requests.get(
         spotify_get_current_track_url,
-        headers = {
+        headers={
             "Authorization": f"Bearer {access_token}"
         }
     )
@@ -45,7 +49,8 @@ def get_current_track (access_token):
 
     return current_track_info
 
-def print_full_data (song_info):
+
+def print_full_data(song_info):
     with open("/Users/petemango/SIDE PROJECTS/spotify_tracker/currently_playing/full_song_info.txt", "at") as file:
         file.write(song_info.name + "\n")
         file.write(song_info.artist + "\n")
@@ -54,24 +59,28 @@ def print_full_data (song_info):
         file.write("\n")
     file.close()
 
-def print_limited_data (reduced_song_info):
+
+def print_limited_data(reduced_song_info):
     with open("/Users/petemango/SIDE PROJECTS/spotify_tracker/currently_playing/reduced_song_info.txt", "at") as file:
         file.write(reduced_song_info.name + "\n")
         file.write(reduced_song_info.artist + "\n")
         file.write("\n")
     file.close()
 
+
 def main():
     current_track_id = None
     while True:
         current_track_info = get_current_track(spotify_access_token)
-        
+
         if current_track_info['id'] != current_track_id:
-            # current_song = song_info(current_track_info.get("name"), current_track_info.get("artists"), 
+            # current_song = song_info(current_track_info.get("name"), current_track_info.get("artists"),
             # current_track_info.get("id"), current_track_info.get("link"))
 
-            red_song_info = reduced_song_info(current_track_info.get("name"), current_track_info.get("artists"))
-            ful_song_info = song_info(current_track_info.get("name"), current_track_info.get("artists"), current_track_info.get("id"), current_track_info.get("link"))
+            red_song_info = reduced_song_info(current_track_info.get(
+                "name"), current_track_info.get("artists"))
+            ful_song_info = song_info(current_track_info.get("name"), current_track_info.get(
+                "artists"), current_track_info.get("id"), current_track_info.get("link"))
 
             print_full_data(ful_song_info)
             print_limited_data(red_song_info)
@@ -85,6 +94,7 @@ def main():
             # pprint(current_track_info, indent=4)
             current_track_id = current_track_info['id']
     time.sleep(30)
+
 
 if __name__ == '__main__':
     main()

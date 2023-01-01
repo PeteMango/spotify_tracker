@@ -2,11 +2,12 @@ import requests
 import json
 from credential import *
 
+
 class refresh:
     def __init__(self):
         self.refresh_token = refresh_token
         self.base_64 = base_64_message
-    
+
     def refresh(self):
         query = "https://accounts.spotify.com/api/token"
 
@@ -19,6 +20,7 @@ class refresh:
         print(response_json)
 
         return response_json["access_token"]
+
 
 a = refresh()
 a.refresh()

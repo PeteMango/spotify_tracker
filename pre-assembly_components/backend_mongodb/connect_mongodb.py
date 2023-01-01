@@ -6,7 +6,8 @@ from pymongo import MongoClient
 
 # mongodb+srv://petemango:<password>@spotify-tracker-cluster.jbudfme.mongodb.net/?retryWrites=true&w=majority
 
-cluster = MongoClient("mongodb+srv://petemango:ay4h7vRoWNv6BD1a@spotify-tracker-cluster.jbudfme.mongodb.net/?retryWrites=true&w=majority")
+cluster = MongoClient(
+    "mongodb+srv://petemango:ay4h7vRoWNv6BD1a@spotify-tracker-cluster.jbudfme.mongodb.net/?retryWrites=true&w=majority")
 db = cluster["spotify_tracker_data"]
 collection = db["songs_listened"]
 

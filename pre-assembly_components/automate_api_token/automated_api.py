@@ -24,4 +24,3 @@ res = requests.post(auth_url, headers=auth_header, data=auth_data)
 token = res.json()['access_token']
 print(res.json())
 print(token)
-
